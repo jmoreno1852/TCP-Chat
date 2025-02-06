@@ -11,6 +11,8 @@ Broadcasts messages from one client to all other connected clients.
 
 Basic exception handling for disconnections and network errors.
 
+**More features could be added to make it more robust and exception handling could be improved**
+
 ## How to Use
 
 1. Clone the Repository
