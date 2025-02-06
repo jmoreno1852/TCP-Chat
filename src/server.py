@@ -43,17 +43,18 @@ def handle_client(s):
 def receive_data(client):
     global clients
     while True:
+        
+        index = clients.index(client)
+        nickname = nickname[index]
         try:  
             data = client.recv(1024).decode('utf-8')
             if  not data:
                 break
-            broadcast(data, client)
+            broadcast(data, client, nickname)
             print(f"\nData recieved: {data}")
         except:
-            index = clients.index(client)
             clients.remove(client)
             client.close()
-            nickname = nickname[index]
             broadcast('{} left!'.format(nickname).encode('utf-8'),client)
             nicknames.remove(nickname)
             break
@@ -68,12 +69,12 @@ def remove(client):
     if client in clients:
         clients.remove(client)
 
-def broadcast(data, connection):
+def broadcast(data, connection, nickname):
     global clients
     for client in clients:
         if client != connection:
             try:
-                client.send(data)
+                client.send(f'{nickname}: {data}'.encode('utf-8'))
             except:
                 client.close()
                 remove(client)
