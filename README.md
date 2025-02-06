@@ -1,10 +1,7 @@
 # TCP Chat Server
----
 This project is a simple TCP-based chat server implemented in Python. It allows multiple clients to connect to a central server and communicate in real-time. The system uses sockets for network communication and threads to handle multiple clients concurrently.
 
----
 ## Features
----
 
 Supports multiple clients simultaneously.
 
@@ -14,9 +11,7 @@ Broadcasts messages from one client to all other connected clients.
 
 Basic exception handling for disconnections and network errors.
 
----
 ## How to Use
----
 
 1. Clone the Repository
 ```bash
@@ -39,9 +34,7 @@ python client.py
 ```
 Enter a nickname when prompted and start chatting. Messages will be visible to all connected clients.
 
----
 ## File Structure
----
 ```bash
 📁 TCP-Chat/
 │── 📁 src/
