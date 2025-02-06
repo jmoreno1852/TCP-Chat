@@ -30,7 +30,7 @@ def handle_client(s):
         nicknames.append(nickname)
         client.send("You are now connected.".encode('utf-8'))
         #Handle client thread    
-        thread = threading.Thread(target=receive_data(client))
+        thread = threading.Thread(target=receive_data, args=(client,))
         thread.start()
         
 def receive_data(client):

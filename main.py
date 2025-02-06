@@ -7,7 +7,7 @@ def main():
 
     s = setup_server(host, port)
     try:
-        thread_handle=threading.Thread(target=handle_client(s))
+        thread_handle=threading.Thread(target=handle_client, args=(s,))
         thread_handle.start()
     except KeyboardInterrupt:
         close_server(s)

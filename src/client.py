@@ -27,9 +27,9 @@ def write(c):
         c.send(message.encode('utf-8'))
 #Main
 
-receive_thread = threading.Thread(target=receive(c))
+receive_thread = threading.Thread(target=receive, args=(c,))
 receive_thread.start()
 
-write_thread = threading.Thread(target=write(c))
+write_thread = threading.Thread(target=write, args=(c,))
 write_thread.start()
 
