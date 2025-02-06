@@ -1,0 +1,2 @@
+# Project dependencies
+# This project does not require any external libraries
