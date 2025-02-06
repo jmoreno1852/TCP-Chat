@@ -17,7 +17,7 @@ Basic exception handling for disconnections and network errors.
 
 1. Clone the Repository
 ```bash
-git clone https://github.com/jmoreno1852/TCP-Chat/
+git clone https://github.com/jmoreno1852/TCP-Chat.git
 cd TCP-Server/
 ```
 2. Run the Server
