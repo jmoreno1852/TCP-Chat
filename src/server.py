@@ -2,16 +2,9 @@ import socket
 import threading
 import sys
 
-#Funciones necesarias
-#Manejar a los clientes
-    #Recibir las conexiones de los clientes
-    #Guardar las conexiones en la variable global clientes
-    #Guardas el Nombre de cada una de las conexiones 
-    #Cuando se envia un mensaje realizar un broadcast del mensaje del cliente
-    #Mostrar en la CLI de los otros clientes el nombre de quien ha envicado el mensaje
-    
-#Necesito una lista de clientes
-
+#Variables globales
+clients = []
+nicknames = []
 
 #Set server - Done
 def setup_server(host,port):
@@ -29,7 +22,7 @@ def handle_client(s):
         #Accept clients connection and save it
         client, addr = s.accept()
         clients.append(client)
-        print(f"Connection form {addr}")
+        print(f"Connection from {addr}")
         
         #Store Nickname 
         client.send('Name:'.encode("utf-8"))
@@ -37,20 +30,21 @@ def handle_client(s):
         nicknames.append(nickname)
         client.send("You are now connected.".encode('utf-8'))
         #Handle client thread    
-        thread = threading.Thread(target=receive_data,args=(client))
+        thread = threading.Thread(target=receive_data(client))
         thread.start()
         
 def receive_data(client):
     global clients
+    global nicknames
     while True:
         
         index = clients.index(client)
-        nickname = nickname[index]
+        nickname = nicknames[index]
         try:  
             data = client.recv(1024).decode('utf-8')
             if  not data:
                 break
-            broadcast(data, client, nickname)
+            broadcast(data, client)
             print(f"\nData recieved: {data}")
         except:
             clients.remove(client)
@@ -69,12 +63,12 @@ def remove(client):
     if client in clients:
         clients.remove(client)
 
-def broadcast(data, connection, nickname):
+def broadcast(data, connection):
     global clients
     for client in clients:
         if client != connection:
             try:
-                client.send(f'{nickname}: {data}'.encode('utf-8'))
+                client.send(data.encode('utf-8'))
             except:
                 client.close()
                 remove(client)
