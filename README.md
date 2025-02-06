@@ -22,19 +22,19 @@ cd TCP-Server/
 ```
 2. Run the Server
 
-Ensure you have Python installed (version 3.8 or higher), then start the server:
+  Ensure you have Python installed (version 3.8 or higher), then start the server:
 ```bash
 python main.py
 ```
-The server will start and listen for incoming connections on port 4444 by default.
+  The server will start and listen for incoming connections on port 4444 by default.
 
 3. Run a Client
 
-Open multiple terminals and run:
+  Open multiple terminals and run:
 ```bash
 python client.py
 ```
-Enter a nickname when prompted and start chatting. Messages will be visible to all connected clients.
+  Enter a nickname when prompted and start chatting. Messages will be visible to all connected clients.
 
 ## File Structure
 ```bash
